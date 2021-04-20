@@ -3,7 +3,6 @@ import streamlit as st
 import pandas as pd
 from pycaret.regression import *
 
-model = load_model('Model_file')
 data = pd.read_csv('car_data.csv')
 
 # ------------------------------------ Design --------------------------#
@@ -50,6 +49,7 @@ def short(x):
 
 st.write("")
 if st.button('Get Price'):
+    model = load_model('Model_file')
     price = predict_model(model, predict_data)['Label'][0]
     price_upper = (price * 0.05) + price
     price_lower = price - (price * 0.05)
